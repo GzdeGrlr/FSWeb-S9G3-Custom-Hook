@@ -1,19 +1,18 @@
 import React from "react";
 
 const Navbar = (props) => {
-  const toggleMode = (e) => {
-    e.preventDefault();
-    props.setGeceModuAc(!props.geceModuAc);
-  };
-
   return (
     <nav className="navbar">
       <h1>Kripto İzleyici</h1>
-      <div className="dark-mode__toggle">
-        <div
-          onClick={toggleMode}
-          className={props.geceModuAc ? "toggle toggled" : "toggle"}
-        />
+      <div
+        style={{ padding: "10px", cursor: "pointer" }}
+        onClick={props.setGeceModu}
+      >
+        <div className="dark-mode__toggle">
+          <div
+            className={props.geceModu === "on" ? "toggle toggled" : "toggle"}
+          />
+        </div>
       </div>
     </nav>
   );

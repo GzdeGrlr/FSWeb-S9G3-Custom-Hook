@@ -1,22 +1,21 @@
-import React from "react";
 import { useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
-import Charts from "../components/Charts";
 import LocalStorageKullan from "./localStorageKullan";
 
-function GeceModuAc({ coinData }) {
-  const [geceModuAc, setGeceModuAc] = LocalStorageKullan("geceModuAc", false);
+export default function useGeceModu() {
+  const [gm, setGm] = useState("off");
 
-  function switchGeceModu() {
-    setGeceModuAc(!geceModuAc);
-  }
+  useEffect(() => {
+    const olanDeger = localStorage.getItem("geceModu");
+    if (olanDeger) {
+      setGm(olanDeger);
+    }
+  }, []);
 
-  return (
-    <div className={geceModuAc ? "dark-mode App" : "App"}>
-      <Navbar geceModu={geceModuAc} setGeceModuAc={setGeceModuAc} />
-      <Charts coinData={coinData} />
-    </div>
-  );
+  const toggleGm = () => {
+    const yeniDeger = gm === "on" ? "off" : "on";
+    localStorage.setItem("geceModu", yeniDeger);
+    setGm(yeniDeger);
+  };
+
+  return [gm, toggleGm];
 }
-
-export default GeceModuAc;

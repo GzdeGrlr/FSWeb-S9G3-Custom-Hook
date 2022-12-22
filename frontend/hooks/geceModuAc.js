@@ -3,18 +3,19 @@ import LocalStorageKullan from "./localStorageKullan";
 
 export default function useGeceModu() {
   const [gm, setGm] = useState("off");
+  const [setTheme, getTheme] = LocalStorageKullan();
 
   useEffect(() => {
-    const olanDeger = localStorage.getItem("geceModu");
-    if (olanDeger) {
-      setGm(olanDeger);
+    //const olanDeger = localStorage.getItem("geceModu");
+    if (getTheme("geceModu")) {
+      setGm(getTheme("geceModu"));
     }
   }, []);
 
   const toggleGm = () => {
     const yeniDeger = gm === "on" ? "off" : "on";
-    localStorage.setItem("geceModu", yeniDeger);
-    setGm(yeniDeger);
+    setTheme("geceModu", yeniDeger);
+    setGm(getTheme("geceModu"));
   };
 
   return [gm, toggleGm];

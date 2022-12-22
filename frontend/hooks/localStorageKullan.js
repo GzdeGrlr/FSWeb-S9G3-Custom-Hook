@@ -1,5 +1,12 @@
-import React, { useState } from "react";
+function LocalStorageKullan() {
+  const setTheme = (theme, newTheme) => {
+    localStorage.setItem(theme, newTheme);
+  };
 
-function LocalStorageKullan() {}
+  const getTheme = (theme) => {
+    return localStorage.getItem(theme);
+  };
+  return [setTheme, getTheme];
+}
 
 export default LocalStorageKullan;
